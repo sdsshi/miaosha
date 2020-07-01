@@ -1,6 +1,7 @@
 # miaosha
 1.电商秒杀项目简介
-       本项目是慕课网上的秒杀项目业务逻辑的基础版，后面还要加上性能优化，如项目中后期还针对高并发情况
+       
+       - 本项目是慕课网上的秒杀项目业务逻辑的基础版，后面还要加上性能优化，如项目中后期还针对高并发情况
        需要实现了系统缓存、降级和限流和支付通用功能等。本系统是使用SpringBoot开发的限时抢购秒杀系统，
        实现基本的登录、查看商品列表、秒杀、下单及其它异常的处理模板等功能。
 
@@ -13,7 +14,7 @@
 开发环境：IDEA+Maven+SpringBoot+MyBatis+Mysql+Git
 项目结构：
 
-技术点：
+- 技术点：
 1）JSR303自定义参数验证
 使用JSR303自定义校验器，实现对用户账号、密码的验证，使得验证逻辑从业务代码中脱离出来。
 
@@ -33,12 +34,16 @@
   3.1. 采用Maven构建项目，选择org.apache.maven.archetypes.maven-archetype-quickstart，以这样的方式是以一个jar的方式进行输出，
 后期可以直接打包导入依赖进行使用。指定src-main-java文件夹为Mark Directory的Sources Root，表示是java的源代码；
 src-main-test文件夹为Mark Directory的Test Sources Root，然后在main下新建资源文件的目录resourcesMark Directory的 Resources Root；
+  
   3.2.接下来就是导入pom文件的依赖信心及插件信息，我这里以Springboot 2.0.5为例，其依赖如下;
+  
   3.3.在数据建好表之后，建表之前先想好数据的领域模型，这样可以避免后面的添加等麻烦，然后在resources下新建mapper文件夹，
 在miaoshaproject文件夹下新建dao和dataobject文件夹，用于可以利用Mybatis的逆向工程生成sql编写的mapper配置文件和生成Dao类的存放位置
 以及dataobject的存放，省去跟数据库打交道的代码编写，专注于业务逻辑的开发。resources下新建mybatis-generator.xml文件，编写pojo的生成方式：
+
   3.4.然后到run目录的->Edit Configuration下点击+按钮新建一个Maven，在Parameter设置文件的位置，以及文件产生的命令
 mybatis-generator:generate，Name设置一下，到时候点击run的时候可以切换到App或mybatis-generate的运行。
+ 
   3.5.使用SpringMvc方式来进行业务开发，首先要明确dataobject是完全与数据库的字段一一映射的，其实现类dao是不能够直接暴露给前端用户，
 而是需要另外建一个model模型，这是核心领域模型，然后通过一个VO把需要展现的信息展现给前端并不包括需要隐藏的信息，并通过一个CommonReturnType来定义通用的返回形式来展现给前端，另外通过controller层来定义业务逻辑，通过service层接口和实现来定义controller层
 需要调用的方法，来完成controller需要完成的业务，一般使得controller层越简单越好，其余的实现在service层进行编写，达到想要的目的。
